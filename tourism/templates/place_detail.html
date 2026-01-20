@@ -12,18 +12,31 @@
 <h1 class="g">{{ place.name }}</h1>
 <section class="search-s">
 
-    {% if place.image %}
-    <img src="{{ place.image.url }}" style="width:400px; border-radius:10px;">
+   {% if place.image %}
+    <img src="{{ place.image.url }}">
     {% endif %}
-    
+
+
+
+
+    {%if place.description %}
     <h2>About</h2>
     <p>{{ place.description }}</p>
-    
+    {%endif %}
+     {%if place.culture %}
     <h2>Culture</h2>
     <p>{{ place.culture }}</p>
-    
+    {%endif %}
+    {%if place.description %}
     <h2>Ethnicity</h2>
     <p>{{ place.ethnicity }}</p>
+     {%endif %}
+      {%if place.description %}
+       <h2>best time to visit</h2>
+       <p>{{ place.description }}</p>
+      {%endif %}
+      
+
     
 <h2>Best Time To Visit</h2>
 <p>{{ place.best_time }}</p>
@@ -34,6 +47,6 @@
 <br>
 <a href="{% url 'home' %}">⬅ Back to Home</a>
 </section>
-
+{% include 'footer.html' %}
 </body>
 </html>

@@ -313,3 +313,53 @@ footer {
         gap: 15px;
     }
 }
+.food-sections{
+    padding:60px ;
+    width: 100%;
+    text-align: center;
+}
+
+.food-sections h2{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.food-list{
+    margin-bottom: 30px;
+    list-style: disc;
+  
+}
+.food-images{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 40px;
+}
+.food-images img{
+    width:250;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+/*=================
+g
+===================*/
+.g img{
+width:500px;
+ border-radius:13px;
+justify-content: center;
+}
+.search-s img{
+    display: block;
+    margin: auto;
+    width:1000px;
+    border-radius:13px;
+    justify-content: center;
+}
+.service{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-end;
+    align-content: space-around;
+}

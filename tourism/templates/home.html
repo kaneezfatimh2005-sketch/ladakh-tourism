@@ -1,5 +1,6 @@
 
 {% load static %}
+ 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,21 +8,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ladakh Tourism</title>
-    <link rel="stylesheet" href="static\index.css">
-    <link rel="stylesheet" href="static\style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href=" {% static 'index.css' %} ">
     
 </head>
 <body>
 {% include 'head.html' %}
 <div class="myslides">
     <img class="mySlides" src="https://www.easeindiatrip.com/blog/wp-content/uploads/2025/05/Ladkah-Expect-at-Pangong-Lake-03.jpg" style="width:100%">
-    <img class="mySlides" src="https://ladakh.gov.in/places-centres/pangong-lake/" style="width:100%">
+    <img class="mySlides" src=" lake.jpeg" style="width:100%">
     
   <div class="first">
         <h1 >Adventure Awaits In Ladakh</h1>
         <p>Find places, routes & adventures easily</p>
-        <form method="GET" action="{% url 'search_place' %}">
-    <input type="text" name="q" placeholder="Search place..." required>
+        <form method="GET" action="{% url 'search_place' %}" class="search-box">
+    <input type="text" name="q" id="searchInput" placeholder="Search place..." required autocomplete="off">
+    <div id="suggestions" class="suggestions-box"></div>
     <button class="btn" type="submit">Search places</button>
 </form>
 
@@ -43,6 +45,10 @@
         <div class="place">Hemis Monastery</div>
         <div class="place">Imam bargah leh</div>
         <div class="place">Shey Monastery</div>
+          <div class="place">Thiksey Monastery</div>
+        <div class="place">Lamayuru Monatery</div>
+        <div class="place">Spithuk Monastery</div>
+        <div class="place">Stongdey Monastery</div>
     </div>
 </section>
           
@@ -54,13 +60,11 @@
         <div class="place">Nubra Valley</div>
         <div class="place">Magnetic Hill</div>
         <div class="place">Zanskar Valley</div>
+         <div class="place">Tso Moriri Lake</div>
+            <div class="place">Khardung La</div>
+               <div class="place">Changthang Plateau</div>
+                  <div class="place">Hunder Sand Dunes</div>
     </div>
-</section>
-
-
-          <li> Kargil War Memorial</li>
-     </ol>  
-</section>
 
 <section id="places">
     <h2>Popular Religious Places</h2>
@@ -92,6 +96,11 @@
             <p>Located in leh</p>
              <a href="/ladakhtourism/template/home.html" >home </a>   
         </div>
+         <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Crematory_Rock_Carvings_Sani_Zanskar_Jun24_A7CR_00746.jpg/250px-Crematory_Rock_Carvings_Sani_Zanskar_Jun24_A7CR_00746.jpg">
+                <h3>Sani Monastery</h3>
+                <p>Sani Monastery, Sa-ni-[tshog], is located next to the village of Sani where the Stod Valley broadens into the central plain of Zanskar in Ladakh, northern India. It is about 6 km to the northwest of the regional centre of Padum</p>
+         </div>
           
     </div>
 </section>
@@ -124,6 +133,25 @@
        <p>A crumbling, historic fortress built from rammed earth and stone, known for its unique architecture, including a legendary rotating room, and its significance as a former political center for the Chiktan region before being abandoned in the late 19th century</p>
        
     </div>
+    <div class="card">
+       <img src="data:image/jpeg;base64,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">
+       <h3>Magnitic Hill</h3>
+         <p>Located in Leh, it is a hill where vehicles appear to move uphill due to magnetic forces.</p>
+    </div>
+    <div class="card">
+        <img src="https://imgcld.yatra.com/ytimages/image/upload/v1462517192/Leh-Khardungla_Pass.jpg">
+        <h3>Khardung La Pass</h3>
+        <p>One of the highest motorable roads in the world, offering stunning views of the Himalayas.</p>
+    </div>
+    <div class="card">
+        <img src="https://www.swantour.com/blogs/wp-content/uploads/2019/05/Zanskar-Valley-tourism.jpg">
+        <h3>Zanskar Valley</h3>
+        <p>A remote valley known for its dramatic landscapes, monasteries, and trekking routes.</p>
+    </div>
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNoPiV6kk7BFHQP3RTEMRgVZGEh2TwJqW8MQ&s">
+        <h3>Tso Kar Lake</h3>
+        <p>A high-altitude salt lake in the Changthang region of Ladakh, known for its unique ecosystem and wildlife.</p>
     </div>
 </section>
 <div class="map" id="map">
@@ -138,6 +166,8 @@
         <li>Bike Trips</li>
         <li>River Rafting</li>
         <li>Camping</li>
+        <li>Photography</li>
+        
     
     </ol>
     
@@ -167,19 +197,42 @@
                 <img src="https://www.brahmandtour.com/img/motorbiketour/srinagar-leh-bike-tour.jpg" alt="Bike Riding">
                 <button>Bike Riding</button>
             </div>
+            <div class="service-card">
+                <img src="https://discoverlehladakh.in/wp-content/uploads/2025/08/Photography-Tour-Package-to-Leh-Ladakh-8-nights-9-days-small-www.discoverlehladakh.in_.jpg" alt="Photography">
+                <button>Photography</button>
           
 
         </div>
     </section>
 
-      <div class="service">
+<section class="food-sections">
+    <h2>Famous Food of Ladakh</h2>
+
+         <ul class="food-list">
+      <li>Thukpa</li>
+      <li>Momos</li>
+      <li>Butter Tea</li>
+    </ul>
+  <div class="food-images">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvOnkTWgw4jG_OAD3Hb3NGgPn8axh_zB6kVw&s" alt="Ladakh Food">
+    
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcYluwsQPi0ZuaO0ygTW3xXN7lDBmP2o_ipQ&s" alt="Ladakh Food">
+    
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRayvmw5lCikRpYCVf1JaFvbonaaDOWOUBJmw&s" alt="Ladakh Food">
+
+   
+  </div>
+
+</section>
+
+      <div class="service" id="best">
     <h2>Best Time to Visit</h2>
     <p>
         Best time to visit Ladakh is from May to September.
         Winters are extremely cold but perfect for snow lovers.
     </p>
-    
- <div class="service-card">
+    <div class="service">
+            <div class="service-card">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU4w5Uz7WhwLl3X5vAMLdwi8QuD3WsMppI-A&s" alt="June">
                 <button>June</button>
             </div>
@@ -193,7 +246,7 @@
                 <button>August</button>
             </div>
    
-   
+   </div>
 </div>
 </section>
 
@@ -202,16 +255,16 @@
 <section id="tips">
     <h2>Travel Tips</h2>
     <ul>
-        <li>Carry warm clothes</li>
-        <li>Acclimatize properly</li>
-        <li>Check weather & road conditions</li>
-        <li>Inner Line Permit required</li>
+        <li>✅Carry warm clothes</li>
+        <li>✅Acclimatize properly</li>
+        <li>✅Check weather & road conditions</li>
+        <li>✅Inner Line Permit required</li>
     </ul>
 </section>
 <section id="travel">
     <h2>How to Reach Ladakh</h2>
     <p>
-        By Air: Kushok Bakula Rimpochee Airport (Leh Airport) connects Ladakh with major cities.
+        By Air : Kushok Bakula Rimpochee Airport (Leh Airport) connects Ladakh with major cities.
     </p>
     <p>
         By Road: Accessible via Manali-Leh Highway and Srinagar-Leh Highway.
@@ -235,7 +288,7 @@
         <div><i class="fa-solid fa-phone"></i> +91 1234567891</div>
     </div>
 
-    <form class="contact-form">
+    <form class="contact-form" id="contact">
         <input type="text" placeholder="Enter your name" required>
         <input type="email" placeholder="Enter your email" required>
         <textarea placeholder="Message" rows="3" required></textarea>
@@ -245,11 +298,7 @@
 
 </div>
 
-<footer>
-    <p>© 2026 Ladakh Tourism Guide</p>
-    <p>Safe Travel • Explore More</p>
-</footer>
-
+{% include 'footer.html' %}
 
 </body>
 </html>
@@ -268,4 +317,51 @@ function carousel() {
   x[slideIndex-1].style.display = "block";
   setTimeout(carousel, 2000); 
 }
+const searchInput = document.getElementById("searchInput");
+const suggestionsBox = document.getElementById("suggestions");
+
+searchInput.addEventListener("input", function () {
+    let query = this.value.trim();
+
+    if (query.length === 0) {
+        suggestionsBox.style.display = "none";
+        suggestionsBox.innerHTML = "";
+        return;
+    }
+
+    fetch(`/suggest/?q=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            suggestionsBox.innerHTML = "";
+
+            if (data.length === 0) {
+                suggestionsBox.style.display = "none";
+                return;
+            }
+
+            suggestionsBox.style.display = "block";
+
+            data.forEach(placeName => {
+                let div = document.createElement("div");
+                div.textContent = placeName;
+
+                div.onclick = function () {
+                    searchInput.value = placeName;
+                    suggestionsBox.style.display = "none";
+
+                    // ✅ open the search result page
+                    window.location.href = `/search/?q=${placeName}`;
+                };
+
+                suggestionsBox.appendChild(div);
+            });
+        });
+});
+
+// hide box when click outside
+document.addEventListener("click", function (e) {
+    if (e.target !== searchInput && !suggestionsBox.contains(e.target)) {
+        suggestionsBox.style.display = "none";
+    }
+});
 </script> 
